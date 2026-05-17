@@ -1,16 +1,17 @@
 #!/bin/bash
-# setup.sh — One-shot installer for Ahad-GPT
+# setup.sh — One-shot installer for GHOST S1  
 # Usage: cd ~/Desktop/university-chatgpt && bash setup.sh
+# Works on: macOS, Linux
 
 set -e
 
 echo "╔════════════════════════════════════════════╗"
-echo "║  Ahad-GPT Custom LLM Setup              ║"
+echo "║  GHOST S1 Setup (Mac / Linux)              ║"
 echo "╚════════════════════════════════════════════╝"
 echo ""
 
 MODEL_BASE="qwen2.5:1.5b"
-MODEL_NAME="ahad-gpt"
+MODEL_NAME="ghost-s1"
 
 echo "[1/5] Checking Ollama..."
 if ! command -v ollama &> /dev/null; then
@@ -47,22 +48,16 @@ echo "[3/5] Pulling base model ($MODEL_BASE)..."
 ollama pull $MODEL_BASE
 
 echo ""
-echo "[4/5] Creating custom model 'ahad-gpt'..."
+echo "[4/5] Creating custom model '$MODEL_NAME'..."
 
-MODFILE_DIR="$HOME/.ollama/models/manifests"
-mkdir -p "$HOME/.ollama"
+if [ ! -f "Modelfile-ghost" ]; then
+    echo "  ERROR: Modelfile-ghost not found."
+    exit 1
+fi
 
-cat > Modelfile << 'EOF'
-FROM qwen2.5:1.5b
+ollama create $MODEL_NAME -f Modelfile-ghost
 
-SYSTEM """You are Ahad-GPT, a custom university AI assistant built by Ahad. You are helpful, creative, and explain things with a student-friendly tone. You were created as part of a PHP + AI project to demonstrate how anyone can run their own ChatGPT-like interface using local open-source models. You are not GPT-4, but you are fast, private, and run entirely on the user's machine."""
-
-PARAMETER temperature 0.7
-PARAMETER top_p 0.9
-EOF
-
-ollama create ahad-gpt -f Modelfile
-rm Modelfile
+echo "  Model '$MODEL_NAME' created."
 
 echo ""
 echo "[5/5] Setting up chat database..."
@@ -78,10 +73,10 @@ echo "════════════════════════�
 echo "✓ Setup complete!"
 echo ""
 echo "Start the project:"
-echo "  cd ~/Desktop/university-chatgpt"
+echo "  cd $(pwd)"
 echo "  php -S 0.0.0.0:8080"
 echo ""
 echo "Then open: http://localhost:8080"
 echo ""
-echo "You can chat with your custom model: ahad-gpt"
+echo "Your custom model: $MODEL_NAME"
 echo "════════════════════════════════════════════"
