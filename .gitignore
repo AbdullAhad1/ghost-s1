@@ -1,0 +1,20 @@
+# Private data
+chats.db
+*.db
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# OS / Editor
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Misc
+*.log
+# Old model files (only Modelfile-ghost is canonical)
+Modelfile
+Modfile-lab

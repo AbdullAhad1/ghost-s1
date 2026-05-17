@@ -1,0 +1,200 @@
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>GHOST S1</title>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link href="https://fonts.googleapis.com/css2?family=VT323&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+         <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="neon-grid"></div>
+    
+        <div class="app-layout">
+            <!-- Sidebar Left -->
+            <aside class="sidebar-left">
+                <div class="sidebar-header">
+                    <span class="logo-text">GHOST S1</span>
+                    <span class="logo-sub">NEURAL INTERFACE</span>
+                </div>
+    
+                <div class="ghost-profile">
+                    <svg class="pixel-ghost" viewBox="0 0 32 32" fill="#9d00ff">
+                        <rect x="10" y="4" width="12" height="2"/>
+                        <rect x="8" y="6" width="16" height="2"/>
+                        <rect x="6" y="8" width="20" height="14"/>
+                        <rect x="6" y="22" width="4" height="2"/>
+                        <rect x="12" y="22" width="4" height="2"/>
+                        <rect x="18" y="22" width="4" height="2"/>
+                        <rect x="24" y="22" width="2" height="2"/>
+                        <rect x="6" y="24" width="2" height="2"/>
+                        <rect x="10" y="24" width="2" height="2"/>
+                        <rect x="14" y="24" width="2" height="2"/>
+                        <rect x="18" y="24" width="2" height="2"/>
+                        <rect x="22" y="24" width="2" height="2"/>
+                        <rect x="10" y="12" width="4" height="4" fill="#000"/>
+                        <rect x="18" y="12" width="4" height="4" fill="#000"/>
+                    </svg>
+                    <div class="radar-ring">
+                        <div class="radar-scan"></div>
+                    </div>
+                    <div class="online-status">
+                        <span class="status-dot"></span>
+                        <span class="status-text">ONLINE</span>
+                    </div>
+                </div>
+    
+                <nav class="menu-nav">
+                    <div class="menu-item active" data-action="new-chat">
+                        <svg class="menu-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3v12M3 9h12"/></svg>
+                        <span class="menu-label">New Chat</span>
+                    </div>
+                    <div class="menu-item" data-action="chats">
+                        <svg class="menu-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 4h16M1 9h10M1 14h16"/></svg>
+                        <span class="menu-label">Chat History</span>
+                    </div>
+                    <div class="menu-item" data-action="status">
+                        <svg class="menu-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="12" height="12" rx="1"/><path d="M7 8l2 2 4-4"/></svg>
+                        <span class="menu-label">System Status</span>
+                    </div>
+                    <div class="menu-item" data-action="models">
+                        <svg class="menu-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 5l8-4 8 4v8l-8 4-8-4V5z"/><path d="M9 13V9"/></svg>
+                        <span class="menu-label">Models</span>
+                    </div>
+                    <div class="menu-item" data-action="settings">
+                        <svg class="menu-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="2.5"/><path d="M14.6 9.5a5.5 5.5 0 00-.15-1.15l2.05-1.18-1-1.74-2.06 1.18a5.5 5.5 0 00-1.99-1.15V1h-2v2.46a5.5 5.5 0 00-1.99 1.15L5.5 3.43l-1 1.74 2.05 1.18a5.5 5.5 0 00-.15 1.15l-2.05 1.18 1 1.74 2.06-1.18a5.5 5.5 0 001.99 1.15V17h2v-2.46a5.5 5.5 0 001.99-1.15l2.06 1.18 1-1.74-2.05-1.18z"/></svg>
+                        <span class="menu-label">Settings</span>
+                    </div>
+                    <div class="menu-item" data-action="docs">
+                        <svg class="menu-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="7"/><path d="M7 7h4M7 11h4"/></svg>
+                        <span class="menu-label">How It Works</span>
+                    </div>
+                </nav>
+                <div class="power-toggle">
+                    <span class="power-label">MODEL POWER</span>
+                    <label class="toggle-switch-v">
+                        <input type="checkbox" id="ghost-power" checked>
+                        <span class="toggle-track-v">
+                            <span class="toggle-knob-v"></span>
+                        </span>
+                    </label>
+                    <span class="power-status" id="power-text">ON</span>
+                </div>
+    
+                <div class="sidebar-footer">
+                    <div class="meter-row">
+                        <span class="meter-label">SYS</span>
+                        <div class="meter-track"><div class="meter-fill" id="sys-fill"></div></div>
+                        <span class="meter-value" id="sys-status">READY</span>
+                    </div>
+                    <div class="meter-row">
+                        <span class="meter-label">MEM</span>
+                        <div class="meter-track"><div class="meter-fill" id="mem-fill"></div></div>
+                        <span class="meter-value" id="mem-status">8%</span>
+                    </div>
+                    <div class="meter-row">
+                        <span class="meter-label">CPU</span>
+                        <div class="meter-track"><div class="meter-fill" id="cpu-fill"></div></div>
+                        <span class="meter-value" id="cpu-status">2%</span>
+                   </div>
+                   <p class="app-footer">built by ahad</p>
+               </div>
+           </aside>
+   
+           <!-- Main Center -->
+           <main class="main-center">
+               <div class="crt-monitor">
+                   <div class="monitor-bezel">
+                       <div class="screen-glass">
+                           <div class="screen-overlay"></div>
+   
+                           <!-- Persistent Ghost Face (stays after boot) -->
+                           <div class="ghost-face-persist" id="ghost-face">
+                               <svg class="persist-ghost" viewBox="0 0 32 32">
+                                   <rect x="10" y="4" width="12" height="2" fill="#9d00ff"/>
+                                   <rect x="8" y="6" width="16" height="2" fill="#9d00ff"/>
+                                   <rect x="6" y="8" width="20" height="14" fill="#9d00ff"/>
+                                   <rect x="6" y="22" width="4" height="2" fill="#9d00ff"/>
+                                   <rect x="12" y="22" width="4" height="2" fill="#9d00ff"/>
+                                   <rect x="18" y="22" width="4" height="2" fill="#9d00ff"/>
+                                   <rect x="24" y="22" width="2" height="2" fill="#9d00ff"/>
+                                   <rect x="6" y="24" width="2" height="2" fill="#9d00ff"/>
+                                   <rect x="10" y="24" width="2" height="2" fill="#9d00ff"/>
+                                   <rect x="14" y="24" width="2" height="2" fill="#9d00ff"/>
+                                   <rect x="18" y="24" width="2" height="2" fill="#9d00ff"/>
+                                   <rect x="22" y="24" width="2" height="2" fill="#9d00ff"/>
+                                   <rect x="10" y="12" width="4" height="4" fill="#000" class="eye-left"/>
+                                   <rect x="18" y="12" width="4" height="4" fill="#000" class="eye-right"/>
+                               </svg>
+                           </div>
+   
+                           <div class="screen-content" id="chat-container">
+                               <!-- Boot Screen -->
+                               <div class="boot-screen" id="boot-screen">
+                                   <div class="boot-header">
+                                       <div class="boot-title">GHOST S1 <span class="boot-divider">//</span> ONLINE</div>
+                                       <div class="boot-subtitle">WELCOME BACK, OPERATOR.</div>
+                                   </div>
+                                   <div class="boot-status">
+                                       <div><span class="status-prompt">&gt;</span> GHOST S1 ONLINE</div>
+                                       <div class="blink"><span class="status-prompt">&gt;</span> READY WHEN YOU ARE<span class="cursor">_</span></div>
+                                   </div>
+                               </div>
+                           </div>
+                           <!-- HUD Ghost Face -->
+                           <div class="boot-face face-hud" id="boot-face">
+                               <div class="bf-body">
+                                   <div class="bf-eyes">
+                                       <div class="bf-eye left"><div class="bf-pupil"></div><div class="bf-eyelid"></div></div>
+                                       <div class="bf-eye right"><div class="bf-pupil"></div><div class="bf-eyelid"></div></div>
+                                   </div>
+                               </div>
+                               <div class="bf-mood" id="bf-mood">IDLE</div>
+                           </div>
+                           <div class="crt-lines"></div>
+                           <div class="nav-panel" id="nav-panel">
+                               <div class="panel-header">
+                                   <span class="panel-title" id="panel-title">PANEL</span>
+                                   <button class="panel-close" id="panel-close" aria-label="Close">×</button>
+                               </div>
+                               <div class="panel-content" id="panel-content"></div>
+                           </div>
+                       </div>
+                       <div class="monitor-brand">GHOST S1</div>
+                       <div class="monitor-power-light"></div>
+                   </div>
+               </div>
+   
+               <div class="keyboard-area">
+                   <div class="floppy left-floppy">
+                       <div class="floppy-body blue"></div>
+                       <div class="floppy-label">SYS</div>
+                   </div>
+   
+                   <div class="keyboard">
+                       <div class="input-bar">
+                           <input type="text" id="message-input" placeholder="Type your message..." autocomplete="off" spellcheck="false">
+                           <button class="send-btn" id="send-btn">
+                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                   <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                               </svg>
+                           </button>
+                       </div>
+                       <div class="kb-brand">
+                           <span>GHOST S1 TERMINAL</span>
+                           <span id="model-badge">ghost-s1</span>
+                       </div>
+                   </div>
+   
+                   <div class="floppy right-floppy">
+                       <div class="floppy-body red"></div>
+                       <div class="floppy-label">ALT</div>
+                   </div>
+               </div>
+           </main>
+       </div>
+   
+       <script src="app.js"></script>
+   </body>
+   </html>
